@@ -1,0 +1,26 @@
+{
+  "name": "media-to-spotify",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Extensão Chrome (MV3) que identifica a mídia em reprodução e a localiza no Spotify.",
+  "type": "module",
+  "scripts": {
+    "icons": "node scripts/generate-icons.mjs",
+    "typecheck": "tsc --noEmit",
+    "build": "node build.mjs",
+    "watch": "node build.mjs --watch",
+    "test": "vitest run",
+    "check": "npm run typecheck && npm test && npm run build",
+    "e2e": "node e2e/run.mjs",
+    "e2e:youtube": "node e2e/build-test.mjs && node e2e/youtube-probe.mjs"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.3.6",
+    "@types/node": "^26.6.5",
+    "esbuild": "^0.28.2",
+    "jsdom": "^26.1.0",
+    "puppeteer-core": "^24.43.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.12"
+  }
+}

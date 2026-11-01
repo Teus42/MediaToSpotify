@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Media to Spotify — Configurações</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Media to Spotify</h1>
+      <p class="lead">Configurações. Tudo é guardado só neste navegador.</p>
+
+      <section>
+        <h2>1. App do Spotify</h2>
+        <p>
+          A extensão usa o <em>seu</em> app cadastrado no Spotify Developer Dashboard (não há segredo embutido no código).
+          Passo a passo completo no README.
+        </p>
+        <label for="clientId">Client ID</label>
+        <input id="clientId" type="text" autocomplete="off" spellcheck="false" placeholder="ex.: 1a2b3c4d5e6f…" />
+        <label for="redirect">Redirect URI para cadastrar no Dashboard</label>
+        <div class="row">
+          <input id="redirect" type="text" readonly />
+          <button id="copy" type="button">Copiar</button>
+        </div>
+        <p class="hint">Cadastre exatamente este endereço em “Redirect URIs” do seu app. Ele muda se o ID da extensão mudar.</p>
+        <div class="row">
+          <button id="saveClient" type="button" class="primary">Salvar Client ID</button>
+          <span id="saveMsg" role="status"></span>
+        </div>
+      </section>
+
+      <section>
+        <h2>2. Conta</h2>
+        <p id="authStatus" role="status">Verificando…</p>
+        <div class="row">
+          <button id="connect" type="button" class="primary">Conectar ao Spotify</button>
+          <button id="disconnect" type="button">Desconectar e apagar dados locais</button>
+        </div>
+        <p id="authMsg" class="hint" role="status"></p>
+        <p class="hint">
+          Ao desconectar, os tokens, o perfil e o cache de playlists são apagados deste navegador. Para também revogar o acesso no
+          Spotify, remova o app em spotify.com/account/apps.
+        </p>
+      </section>
+
+      <section>
+        <h2>3. Preferências</h2>
+        <label class="check"><input id="autoSearch" type="checkbox" /> Pesquisar automaticamente quando uma mídia começar a tocar</label>
+        <fieldset>
+          <legend>“Ouvir no Spotify” abre…</legend>
+          <label class="check"><input type="radio" name="openMode" value="app" /> o aplicativo do Spotify (se o sistema souber abrir <code>spotify:</code>)</label>
+          <label class="check"><input type="radio" name="openMode" value="web" /> direto o Spotify Web, em nova aba</label>
+        </fieldset>
+        <label for="market">País para disponibilidade das faixas (opcional)</label>
+        <input id="market" type="text" maxlength="2" placeholder="BR" class="short" aria-describedby="marketHint" />
+        <p id="marketHint" class="hint">Código de 2 letras (ex.: BR, US). Em branco, usamos a região do idioma do navegador.</p>
+      </section>
+
+      <section>
+        <h2>4. Sites habilitados por você</h2>
+        <p class="hint">
+          Por padrão a extensão só lê YouTube, YouTube Music, SoundCloud, Bandcamp, Deezer, TIDAL e Apple Music. Outros sites só
+          entram se você pedir no popup.
+        </p>
+        <ul id="sites" class="sites"></ul>
+      </section>
+
+      <section>
+        <h2>5. Privacidade e dados</h2>
+        <ul class="plain">
+          <li>Nenhum áudio é capturado e não há reconhecimento de voz: só o título e os metadados que a própria página expõe.</li>
+          <li>Os títulos são interpretados localmente. Para pesquisar, só o texto da busca vai ao Spotify (<code>api.spotify.com</code>).</li>
+          <li>Não há servidor próprio, análise de uso nem telemetria.</li>
+          <li>O histórico de navegação não é coletado: guardamos apenas o título/host da mídia atual de cada aba, por sessão.</li>
+        </ul>
+        <div class="row">
+          <button id="clearCache" type="button">Limpar cache de buscas e playlists</button>
+          <span id="clearMsg" role="status"></span>
+        </div>
+      </section>
+    </main>
+    <script src="options.js"></script>
+  </body>
+</html>
